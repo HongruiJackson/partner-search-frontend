@@ -1,15 +1,16 @@
 <script setup lang="ts">
-import {showToast} from "vant";
 import {ref} from "vue";
 
-const value = ref('');
-const onSearch = (val: string) => showToast(val);
-const onCancel = () => history.back();
-
-//
+// 选中标签的标记
 const activeIds = ref([]);
 const activeIndex = ref(0);
-const items = [
+// 移除标签
+const doClose = (chosenTag: string) => {
+  activeIds.value = activeIds.value.filter(item => {
+    return item !== chosenTag;
+  })
+}
+const originalTagList = [
   {
     text: '浙江',
     children: [
@@ -34,20 +35,32 @@ const items = [
     ],
   }
 ];
-// 移除标签
-const doClose = (chosenTag: string) => {
-  activeIds.value = activeIds.value.filter(item => {
-    return item !== chosenTag;
-  })
+const onCancel = () => {
+  searchText.value = '';
+  tagList.value = originalTagList;
 }
+
+const searchText = ref('');
+let tagList = ref(originalTagList);
+const onSearch = () => {
+  tagList.value = originalTagList.map(parentTag => {
+    const tempChildren = [...parentTag.children];
+    const tempParentTag = {...parentTag};
+    tempParentTag.children = tempChildren.filter(item => item.text.includes(searchText.value));
+    return tempParentTag;
+  });
+
+}
+
+
 </script>
 
 <template>
   <form action="/">
     <van-search
-        v-model="value"
+        v-model="searchText"
         show-action
-        placeholder="请输入搜索关键词"
+        placeholder="请输入要查询的标签"
         @search="onSearch"
         @cancel="onCancel"
     />
@@ -66,7 +79,7 @@ const doClose = (chosenTag: string) => {
   <van-tree-select
       v-model:active-id="activeIds"
       v-model:main-active-index="activeIndex"
-      :items="items"
+      :items="tagList"
   />
 
 
