@@ -1,15 +1,13 @@
 <script setup lang="ts">
 import {showToast} from "vant";
 import {onMounted, ref} from "vue";
+import router from "@/router";
 const onClickLeft = () => history.back();
-const onClickRight = () => showToast('按钮');
+const onClickRight = () => router.push('/search');
 
 // 更改导航栏的标题
 const pageTitle = ref('Home')
 const onChange = (index: string) => {pageTitle.value = index}; //vant组件包含的事件
-onMounted(()=> {
-
-})
 </script>
 
 <template>

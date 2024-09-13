@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from "@/views/HomeView.vue";
 import TeamView from "@/views/TeamView.vue";
 import UserView from "@/views/UserView.vue";
+import SearchView from "@/views/SearchView.vue";
 
 const rootChildren = [
   {
@@ -18,6 +19,11 @@ const rootChildren = [
     path: '/user',
     name: 'user',
     component: UserView
+  },
+  {
+    path: '/search',
+    name: 'search',
+    component: SearchView
   },
 ]
 
