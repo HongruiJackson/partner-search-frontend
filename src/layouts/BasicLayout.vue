@@ -28,7 +28,7 @@ const onChange = (index: string) => {pageTitle.value = index}; //vant组件包�
   <van-tabbar route @change="onChange">
     <van-tabbar-item replace to="/home" icon="home-o" name="Home">Home</van-tabbar-item>
     <van-tabbar-item replace to="/team" icon="friends-o" name="Team">Team</van-tabbar-item>
-    <van-tabbar-item replace to="/user" icon="search" name="User">User</van-tabbar-item>
+    <van-tabbar-item replace to="/user" icon="contact-o" name="User">User</van-tabbar-item>
   </van-tabbar>
 </template>
 
