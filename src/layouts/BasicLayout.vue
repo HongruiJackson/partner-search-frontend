@@ -1,13 +1,20 @@
 <script setup lang="ts">
 import {showToast} from "vant";
-
+import {onMounted, ref} from "vue";
 const onClickLeft = () => history.back();
 const onClickRight = () => showToast('按钮');
+
+// 更改导航栏的标题
+const pageTitle = ref('Home')
+const onChange = (index: string) => {pageTitle.value = index}; //vant组件包含的事件
+onMounted(()=> {
+
+})
 </script>
 
 <template>
   <van-nav-bar
-      title="标题"
+      v-bind:title=pageTitle
       left-arrow
       @click-left="onClickLeft"
       @click-right="onClickRight"
@@ -20,10 +27,10 @@ const onClickRight = () => showToast('按钮');
   <!-- 插槽接router-view页面  -->
   <slot name="content"></slot>
   <!-- 底部导航栏-->
-  <van-tabbar route>
-    <van-tabbar-item replace to="/home" icon="home-o">Home</van-tabbar-item>
-    <van-tabbar-item replace to="/team" icon="friends-o">Team</van-tabbar-item>
-    <van-tabbar-item replace to="/user" icon="search">User</van-tabbar-item>
+  <van-tabbar route @change="onChange">
+    <van-tabbar-item replace to="/home" icon="home-o" name="Home">Home</van-tabbar-item>
+    <van-tabbar-item replace to="/team" icon="friends-o" name="Team">Team</van-tabbar-item>
+    <van-tabbar-item replace to="/user" icon="search" name="User">User</van-tabbar-item>
   </van-tabbar>
 </template>
 
