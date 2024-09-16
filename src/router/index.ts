@@ -3,6 +3,7 @@ import HomeView from "@/views/HomeView.vue";
 import TeamView from "@/views/TeamView.vue";
 import UserView from "@/views/UserView.vue";
 import SearchView from "@/views/SearchView.vue";
+import UserEditView from "@/views/UserEditView.vue";
 
 const rootChildren = [
   {
@@ -25,6 +26,11 @@ const rootChildren = [
     name: 'search',
     component: SearchView
   },
+  {
+    path: '/user/edit',
+    name: 'edit',
+    component: UserEditView
+  }
 ]
 
 const router = createRouter({
