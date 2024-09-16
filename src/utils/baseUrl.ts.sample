@@ -1,0 +1,6 @@
+let baseUrl= "";
+
+const localUrl = "http://localhost:8080"
+
+baseUrl = localUrl
+export default baseUrl
