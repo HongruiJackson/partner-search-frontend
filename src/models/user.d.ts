@@ -16,7 +16,7 @@ export type UserType =  {
     /**
      * 用户昵称
      */
-    username?: string;
+    username?: string  | null;
     /**
      * 用户具有的标签
      */
@@ -24,7 +24,7 @@ export type UserType =  {
     /**
      * 头像
      */
-    avatarUrl?: string;
+    avatarUrl?: string  | null;
     /**
      * 性别，0 表示男性；1 表示女性
      */
@@ -32,11 +32,11 @@ export type UserType =  {
     /**
      * 电话
      */
-    phone?: string;
+    phone?: string  | null;
     /**
      * 邮箱
      */
-    email?: string;
+    email?: string  | null;
     /**
      * 账号状态，0 表示正常
      */

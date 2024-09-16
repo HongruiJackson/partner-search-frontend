@@ -4,6 +4,7 @@ import TeamView from "@/views/TeamView.vue";
 import UserView from "@/views/UserView.vue";
 import SearchView from "@/views/SearchView.vue";
 import UserEditView from "@/views/UserEditView.vue";
+import SearchResultView from "@/views/SearchResultView.vue";
 
 const rootChildren = [
   {
@@ -30,7 +31,12 @@ const rootChildren = [
     path: '/user/edit',
     name: 'edit',
     component: UserEditView
-  }
+  },
+  {
+    path: '/user/list',
+    name: 'searchResult',
+    component: SearchResultView
+  },
 ]
 
 const router = createRouter({

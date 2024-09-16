@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import {ref} from "vue";
+import router from "@/router";
 
 // 选中标签的标记
 const activeIds = ref([]);
@@ -52,7 +53,17 @@ const onSearch = () => {
 
 }
 
-
+/**
+ * 执行搜索
+ */
+const doSearchResult = () => {
+  router.push({
+    path: '/user/list',
+    query: {
+      tags: activeIds.value
+    }
+  })
+}
 </script>
 
 <template>
@@ -81,6 +92,10 @@ const onSearch = () => {
       v-model:main-active-index="activeIndex"
       :items="tagList"
   />
+
+  <div style="padding: 12px">
+    <van-button block type="primary" @click="doSearchResult">搜索</van-button>
+  </div>
 
 
 </template>
