@@ -17,8 +17,8 @@ defineProps({
       thumb="https://fastly.jsdelivr.net/npm/@vant/assets/ipad.jpeg"
   >
     <template #tags>
-      <van-tag plain type="primary" v-for="tag in user.tags">{{tag}}</van-tag>
-      <div>{{user}}</div>
+      <van-tag plain type="primary" v-for="tag in user.tags" :key="tag">{{tag}}</van-tag>
+<!--      <div>{{user}}</div>--><!--用来看数据的-->
     </template>
   </van-card>
 

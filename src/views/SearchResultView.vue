@@ -15,7 +15,7 @@ const userList = mockUserList;
 </script>
 
 <template>
-  <div v-for="user in userList">
+  <div v-for="user in userList" v-bind:key="user.userAccount">
     <UserCard :user = user />
   </div>
 </template>
