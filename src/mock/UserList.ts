@@ -8,6 +8,7 @@ const UserList = [
             "Python",
             "JS"
         ],
+        profile: '饼皮，我是一张饼皮',
         username: null,
         avatarUrl: null,
         gender: 0,
@@ -27,6 +28,7 @@ const UserList = [
             "dwdw",
             "iwjdoiwdpowpodewf",
         ],
+        profile: null,
         username: null,
         avatarUrl: null,
         gender: 0,

@@ -22,6 +22,10 @@ export type UserType =  {
      */
     tags?: string[];
     /**
+     * 用户具有的标签
+     */
+    profile?: string | null;
+    /**
      * 头像
      */
     avatarUrl?: string  | null;

@@ -12,7 +12,7 @@ defineProps({
 
 <template>
   <van-card
-      desc="描述信息"
+      :desc="user.profile ? user.profile : '未填写简介'"
       :title=user.userAccount
       thumb="https://fastly.jsdelivr.net/npm/@vant/assets/ipad.jpeg"
   >
