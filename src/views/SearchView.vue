@@ -15,8 +15,8 @@ const originalTagList = [
   {
     text: '浙江',
     children: [
-      { text: '杭州', id: '杭州' },
-      { text: '温州', id: '温州' },
+      { text: 'Java', id: 'Java' },
+      { text: 'Python', id: 'Python' },
     ],
   },
   {
