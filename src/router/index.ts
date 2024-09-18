@@ -5,6 +5,7 @@ import UserView from "@/views/UserView.vue";
 import SearchView from "@/views/SearchView.vue";
 import UserEditView from "@/views/UserEditView.vue";
 import SearchResultView from "@/views/SearchResultView.vue";
+import UserLoginView from "@/views/UserLoginView.vue";
 
 const rootChildren = [
   {
@@ -36,6 +37,11 @@ const rootChildren = [
     path: '/user/list',
     name: 'searchResult',
     component: SearchResultView
+  },
+  {
+    path: '/user/login',
+    name: 'userLogin',
+    component: UserLoginView
   },
 ]
 
