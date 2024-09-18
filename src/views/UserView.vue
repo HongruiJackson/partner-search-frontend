@@ -32,6 +32,10 @@ const toEdit= (editKey:string, currentValue:string|null|number,title:string|null
     }
   })
 }
+
+const tempPush = ()=>{
+  router.push('/user/login')
+}
 </script>
 
 <template>
@@ -45,6 +49,10 @@ const toEdit= (editKey:string, currentValue:string|null|number,title:string|null
   <van-cell title="性别" is-link :value="user.gender?'女':'男'" @click="toEdit('gender',user.gender,'性别')"/>
   <van-cell title="电话" is-link :value="user.phone==null?'未填写':user.phone" @click="toEdit('phone',user.phone,'电话')"/>
   <van-cell title="邮箱" is-link :value="user.email==null?'未填写':user.email" @click="toEdit('email',user.email,'邮箱')"/>
+
+  <div style="padding: 12px">
+    <van-button block type="primary" @click="tempPush">to login page temp</van-button>
+  </div>
 </template>
 
 <style scoped>
