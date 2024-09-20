@@ -27,3 +27,8 @@ export const updateUser = (user: UserType) =>
  * 获取用户登录态
  */
 export const getCurrentUser = () => request.get(startUrl+'/current')
+
+/**
+ * 主页获取推荐用户列表
+ */
+export const getRecommendUserList = () => request.get(startUrl+'/recommend')

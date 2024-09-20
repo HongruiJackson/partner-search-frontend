@@ -2,13 +2,14 @@
 import {onMounted, type Ref, ref} from "vue";
 import UserCard from "@/components/UserCard.vue";
 import mockList from "@/mock/UserList";
+import {getRecommendUserList} from "@/api/user";
 
 let userList: Ref = ref([]);
 // const userList = mockUserList;
 onMounted(async () => {
-  // const res = await searchUserByTags(tags);
+  const res = await getRecommendUserList();
   // console.log(res)
-  userList.value = mockList
+  userList.value = res.data.data
 })
 
 </script>
