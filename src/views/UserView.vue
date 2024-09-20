@@ -1,30 +1,12 @@
 <script setup lang="ts">
-import {type Ref, ref, type UnwrapRef} from "vue";
+import {onMounted, type Ref, ref, type UnwrapRef} from "vue";
 import router from "@/router";
 import {useUserStore} from "@/stores/user";
 import type {UserType} from "@/models/user";
+import {getCurrentUser} from "@/api/user";
 
 const userStore = useUserStore()
-const user = userStore.user
-// const user =  {
-//
-//   id: 1,
-//   userAccount: 'jackson',
-//   tags: [
-//     "Java",
-//     "Python",
-//     "JS"
-//   ],
-//   profile: null,
-//   username: null,
-//   avatarUrl: null,
-//   gender: 0,
-//   phone: null,
-//   email: null,
-//   userStatus: null,
-//   userRole: 1,
-//
-// }
+const user: Ref<UserType>= ref({})
 
 const toEdit= (editKey: string, currentValue: UnwrapRef<UnwrapRef<Ref<UserType>>["profile"]> | undefined | number, title: string | null)=> {
   router.push({
@@ -40,6 +22,11 @@ const toEdit= (editKey: string, currentValue: UnwrapRef<UnwrapRef<Ref<UserType>>
 const tempPush = ()=>{
   router.push('/user/login')
 }
+
+onMounted(async ()=>{
+  const res = await getCurrentUser()
+  user.value = res.data.data
+})
 </script>
 
 <template>

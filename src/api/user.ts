@@ -22,3 +22,8 @@ export const userLogin = (userAccount:string, userPassword:string) =>
  */
 export const updateUser = (user: UserType) =>
     request.post(startUrl+'/update',user)
+
+/**
+ * 获取用户登录态
+ */
+export const getCurrentUser = () => request.get(startUrl+'/current')
