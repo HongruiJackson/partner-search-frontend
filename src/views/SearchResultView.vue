@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import {onMounted, ref} from "vue";
+import {onMounted, type Ref, ref} from "vue";
 import {useRoute} from "vue-router";
 import UserCard from "@/components/UserCard.vue";
 import {searchUserByTags} from "@/api/user";
 const route = useRoute();
 const tags = route.query.tags
 
-let userList = ref([]);
+let userList: Ref = ref([]);
 // const userList = mockUserList;
 onMounted(async () => {
   const res = await searchUserByTags(tags);
