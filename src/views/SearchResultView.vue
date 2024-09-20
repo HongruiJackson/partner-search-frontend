@@ -17,7 +17,8 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div v-for="user in userList.values()" v-bind:key="user.userAccount">
+  <van-empty image="search" description="搜索结果为空" v-if="userList.length < 1" />
+  <div v-for="user in userList.values()" v-bind:key="user.userAccount" v-else>
     <UserCard :user = user />
   </div>
 </template>
