@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import {ref} from "vue";
 import {useRoute} from "vue-router";
+import {updateUser, userLogin} from "@/api/user";
 
 
 const route = useRoute();
@@ -9,7 +10,8 @@ const editUser = ref({
   currentValue: route.query.currentValue ? route.query.currentValue : '',
   title: route.query.title ? route.query.title : ''
 })
-const onSubmit = () => {
+const onSubmit = async () => {
+  const res = await updateUser({[editUser.value.editKey as string]: editUser.value.currentValue})
   console.log('submit', editUser.value);
 };
 

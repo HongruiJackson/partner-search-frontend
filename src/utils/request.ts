@@ -4,7 +4,8 @@ import {useUserStore} from "@/stores/user"; // 去掉baseUrl.ts.sample的.sample
 
 const instance = axios.create({
     baseURL: baseUrl,
-    timeout: 10000
+    timeout: 10000,
+    withCredentials: true
 })
 
 // 添加请求拦截器

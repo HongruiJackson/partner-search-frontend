@@ -1,5 +1,6 @@
 import request from '@/utils/request'
 import type {LocationQueryValue} from "vue-router";
+import type {UserType} from "@/models/user";
 
 const startUrl = '/user'
 /**
@@ -15,3 +16,9 @@ export const searchUserByTags = (tags: string | null | LocationQueryValue[]) =>
  */
 export const userLogin = (userAccount:string, userPassword:string) =>
     request.post(startUrl+'/login',{userAccount,userPassword})
+/**
+ * 更新用户信息
+ * @param user
+ */
+export const updateUser = (user: UserType) =>
+    request.post(startUrl+'/update',user)

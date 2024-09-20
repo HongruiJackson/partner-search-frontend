@@ -12,8 +12,6 @@ const userAccount = ref('');
 const userPassword = ref('');
 const onSubmit = async () => {
   const res = await userLogin(userAccount.value, userPassword.value);
-  const setCookieValue = res.headers['Set-Cookie'];
-  userStore.setCookie(setCookieValue)
   userStore.setUser(res.data.data)
   router.back()
 };
