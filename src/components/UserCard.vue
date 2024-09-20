@@ -13,7 +13,7 @@ defineProps({
 <template>
   <van-card
       :desc="user.profile ? user.profile : '未填写简介'"
-      :title=user.userAccount
+      :title="user.username ? user.username : '无昵称'"
       :thumb="user.avatarUrl ? user.avatarUrl: 'https://fastly.jsdelivr.net/npm/@vant/assets/ipad.jpeg'"
   >
     <template #tags>
