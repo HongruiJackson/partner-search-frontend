@@ -2,6 +2,7 @@
 import {ref} from "vue";
 import {useRoute} from "vue-router";
 import {updateUser, userLogin} from "@/api/user";
+import router from "@/router";
 
 
 const route = useRoute();
@@ -13,6 +14,7 @@ const editUser = ref({
 const onSubmit = async () => {
   const res = await updateUser({[editUser.value.editKey as string]: editUser.value.currentValue})
   console.log('submit', editUser.value);
+  router.back()
 };
 
 
