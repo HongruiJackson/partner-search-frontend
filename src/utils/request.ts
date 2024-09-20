@@ -1,5 +1,6 @@
 import axios from "axios";
-import baseUrl from "@/utils/baseUrl"; // 去掉baseUrl.ts.sample的.sample后缀，修改掉里面的baseUrl
+import baseUrl from "@/utils/baseUrl";
+import {useUserStore} from "@/stores/user"; // 去掉baseUrl.ts.sample的.sample后缀，修改掉里面的baseUrl
 
 const instance = axios.create({
     baseURL: baseUrl,
@@ -9,6 +10,11 @@ const instance = axios.create({
 // 添加请求拦截器
 instance.interceptors.request.use(function (config) {
     // 在发送请求之前做些什么
+    const userStore = useUserStore()
+    if (userStore.cookie) {
+        config.headers.Cookie = userStore.cookie
+    }
+
     return config;
 }, function (error) {
     // 对请求错误做些什么

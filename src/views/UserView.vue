@@ -1,28 +1,32 @@
 <script setup lang="ts">
-import {ref} from "vue";
+import {type Ref, ref, type UnwrapRef} from "vue";
 import router from "@/router";
+import {useUserStore} from "@/stores/user";
+import type {UserType} from "@/models/user";
 
-const user =  {
+const userStore = useUserStore()
+const user = userStore.user
+// const user =  {
+//
+//   id: 1,
+//   userAccount: 'jackson',
+//   tags: [
+//     "Java",
+//     "Python",
+//     "JS"
+//   ],
+//   profile: null,
+//   username: null,
+//   avatarUrl: null,
+//   gender: 0,
+//   phone: null,
+//   email: null,
+//   userStatus: null,
+//   userRole: 1,
+//
+// }
 
-  id: 1,
-  userAccount: 'jackson',
-  tags: [
-    "Java",
-    "Python",
-    "JS"
-  ],
-  profile: null,
-  username: null,
-  avatarUrl: null,
-  gender: 0,
-  phone: null,
-  email: null,
-  userStatus: null,
-  userRole: 1,
-
-}
-
-const toEdit= (editKey:string, currentValue:string|null|number,title:string|null)=> {
+const toEdit= (editKey: string, currentValue: UnwrapRef<UnwrapRef<Ref<UserType>>["profile"]> | undefined | number, title: string | null)=> {
   router.push({
     path: '/user/edit',
     query: {

@@ -1,12 +1,21 @@
 <script setup lang="ts">
 import {ref} from "vue";
 import {searchUserByTags, userLogin} from "@/api/user";
+import {useUserStore} from "@/stores/user";
+import router from "@/router";
 
+const userStore = useUserStore()
+/**
+ * 登录信息
+ */
 const userAccount = ref('');
 const userPassword = ref('');
 const onSubmit = async () => {
   const res = await userLogin(userAccount.value, userPassword.value);
-  console.log(res.data.data)
+  const setCookieValue = res.headers['Set-Cookie'];
+  userStore.setCookie(setCookieValue)
+  userStore.setUser(res.data.data)
+  router.back()
 };
 </script>
 
