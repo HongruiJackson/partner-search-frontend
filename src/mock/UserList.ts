@@ -9,7 +9,7 @@ const UserList = [
             "JS"
         ],
         profile: '饼皮，我是一张饼皮',
-        username: null,
+        username: '饼皮',
         avatarUrl: null,
         gender: 0,
         phone: null,
