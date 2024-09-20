@@ -32,7 +32,7 @@ onMounted(async ()=>{
 
 <template>
   <van-cell title="昵称" is-link :value="user.username==null?'未填写':user.username" @click="toEdit('username',user.username,'昵称')"/>
-  <van-cell title="账号" is-link :value="user.userAccount==null?'未填写':user.userAccount" @click="toEdit('userAccount',user.userAccount,'账号')"/>
+  <van-cell title="账号" :value="user.userAccount==null?'未填写':user.userAccount"/>
   <van-cell title="简介" is-link :value="user.profile==null?'未填写':user.profile" @click="toEdit('profile',user.profile,'简介')"/>
 <!--  <van-cell title="头像" is-link @click="toEdit('avatarUrl',user.avatarUrl,'头像')">-->
   <van-cell title="头像">

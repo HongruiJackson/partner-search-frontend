@@ -14,7 +14,7 @@ defineProps({
   <van-card
       :desc="user.profile ? user.profile : '未填写简介'"
       :title=user.userAccount
-      thumb="https://fastly.jsdelivr.net/npm/@vant/assets/ipad.jpeg"
+      :thumb="user.avatarUrl ? user.avatarUrl: 'https://fastly.jsdelivr.net/npm/@vant/assets/ipad.jpeg'"
   >
     <template #tags>
       <van-tag style="margin-right: 8px; margin-top: 4px" plain type="primary" v-for="tag in user.tags" :key="tag">{{tag}}</van-tag>
