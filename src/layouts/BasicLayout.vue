@@ -23,7 +23,7 @@ const onChange = (index: string) => {pageTitle.value = index}; //vant组件包�
   </van-nav-bar>
 
   <!-- 插槽接router-view页面  -->
-  <slot name="content"></slot>
+  <slot id="content" name="content"></slot>
   <!-- 底部导航栏-->
   <van-tabbar route @change="onChange">
     <van-tabbar-item replace to="/home" icon="home-o" name="Home">Home</van-tabbar-item>
@@ -33,5 +33,7 @@ const onChange = (index: string) => {pageTitle.value = index}; //vant组件包�
 </template>
 
 <style scoped>
-
+#content {
+  padding-bottom: 50px;
+}
 </style>
