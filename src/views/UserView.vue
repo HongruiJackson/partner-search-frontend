@@ -26,6 +26,7 @@ const tempPush = ()=>{
 onMounted(async ()=>{
   const res = await getCurrentUser()
   user.value = res.data.data
+  userStore.setUser(user.value)
 })
 </script>
 
