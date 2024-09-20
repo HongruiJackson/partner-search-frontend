@@ -6,8 +6,12 @@ import SearchView from "@/views/SearchView.vue";
 import UserEditView from "@/views/UserEditView.vue";
 import SearchResultView from "@/views/SearchResultView.vue";
 import UserLoginView from "@/views/UserLoginView.vue";
+import {useUserStore} from "@/stores/user";
+import MainPageView from "@/views/MainPageView.vue";
 
-const rootChildren = [
+
+
+const mainPageChildren = [
   {
     path: '/home',
     name: 'home',
@@ -38,11 +42,21 @@ const rootChildren = [
     name: 'searchResult',
     component: SearchResultView
   },
+]
+
+const rootChildren = [
   {
-    path: '/user/login',
-    name: 'userLogin',
+    path: '/login',
+    name: 'login',
     component: UserLoginView
   },
+  {
+    path: '/main',
+    name: 'main',
+    component: MainPageView,
+    redirect: '/user',
+    children: mainPageChildren
+  }
 ]
 
 const router = createRouter({
@@ -51,13 +65,18 @@ const router = createRouter({
     {
       path: '/',
       name: 'root',
-      redirect: '/home',
+      redirect: '/main',
       children: rootChildren
     },
+
 
   ]
 })
 
-
+router.beforeEach((to) => {
+  // 如果没有token, 且访问的是非登录页，拦截到登录，其他情况正常放行
+  const userStore = useUserStore()
+  if (!userStore.user && to.path !== '/login') return '/login'
+})
 
 export default router

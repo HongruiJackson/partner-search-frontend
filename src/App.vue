@@ -5,14 +5,7 @@ import BasicLayout from "@/layouts/BasicLayout.vue";
 
 <template>
 
-  <BasicLayout>
-    <template v-slot:right-option>
-      <van-icon name="search" size="18" />
-    </template>
-    <template v-slot:content>
-      <RouterView />
-    </template>
-  </BasicLayout>
+  <RouterView/>
 
 
 </template>

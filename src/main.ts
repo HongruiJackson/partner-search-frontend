@@ -5,6 +5,9 @@ import piniaPersist from 'pinia-plugin-persist' //https://blog.csdn.net/Only1ove
 import App from './App.vue'
 import router from './router'
 
+import 'vant/es/toast/style'
+import 'vant/es/notify/style'
+
 const app = createApp(App)
 app.use(createPinia().use(piniaPersist))
 app.use(router)

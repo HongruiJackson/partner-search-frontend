@@ -20,7 +20,7 @@ const toEdit= (editKey: string, currentValue: UnwrapRef<UnwrapRef<Ref<UserType>>
 }
 
 const tempPush = ()=>{
-  router.push('/user/login')
+  router.push('/login')
 }
 
 onMounted(async ()=>{

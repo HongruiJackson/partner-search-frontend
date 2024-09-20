@@ -3,6 +3,8 @@ import {ref} from "vue";
 import {searchUserByTags, userLogin} from "@/api/user";
 import {useUserStore} from "@/stores/user";
 import router from "@/router";
+import {showFailToast} from "vant";
+
 
 const userStore = useUserStore()
 /**
@@ -12,12 +14,14 @@ const userAccount = ref('');
 const userPassword = ref('');
 const onSubmit = async () => {
   const res = await userLogin(userAccount.value, userPassword.value);
+  if (res.data.data === null) showFailToast('登录失败');
   userStore.setUser(res.data.data)
-  router.back()
+  await router.replace('/main')
 };
 </script>
 
 <template>
+  <van-nav-bar title="登录" />
   <van-form @submit="onSubmit">
     <van-cell-group inset>
       <van-field
