@@ -16,15 +16,16 @@ const originalTagList = ref([])
 onMounted(async ()=>{
   const res = await getCompletedTagList()
   originalTagList.value = res.data.data
+  tagList.value = JSON.parse(JSON.stringify(originalTagList.value));
 })
 
 const onCancel = () => {
   searchText.value = '';
-  tagList.value = originalTagList.value;
+  tagList.value= originalTagList.value;
 }
 
 const searchText = ref('');
-let tagList = ref(originalTagList);
+let tagList = ref([]);
 const onSearch = () => {
   tagList.value = originalTagList.value.map(parentTag => {
     const tempChildren = [...parentTag.children];
