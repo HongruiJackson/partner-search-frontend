@@ -23,7 +23,10 @@ const onChange = (index: string) => {pageTitle.value = index}; //vant组件包�
   </van-nav-bar>
 
   <!-- 插槽接router-view页面  -->
-  <slot id="content" name="content"></slot>
+  <div id="content">
+    <slot name="content"></slot>
+  </div>
+
   <!-- 底部导航栏-->
   <van-tabbar route @change="onChange">
     <van-tabbar-item replace to="/home" icon="home-o" name="Home">Home</van-tabbar-item>
