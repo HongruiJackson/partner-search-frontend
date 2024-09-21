@@ -1,24 +1,44 @@
 <script setup lang="ts">
 import {onMounted, type Ref, ref} from "vue";
 import UserCard from "@/components/UserCard.vue";
-import mockList from "@/mock/UserList";
 import {getRecommendUserList} from "@/api/user";
 
 let userList: Ref = ref([]);
-// const userList = mockUserList;
+const list = ref([]);
+const loading = ref(false);
+const finished = ref(false);
+const pageSize = 20; //单页最大
 onMounted(async () => {
-  const res = await getRecommendUserList();
-  // console.log(res)
-  userList.value = res.data.data
+  await onLoad()
 })
-
+const onLoad = async () => {
+  const res = await getRecommendUserList(list.value.length/20+1,pageSize);
+  userList.value = res.data.data.records
+  userList.value.forEach((user)=>{
+    list.value.push(user)
+  })
+  // 加载状态结束
+  loading.value = false;
+  // 数据全部加载完成
+  if (list.value.length >= res.data.data.total) {
+    finished.value = true;
+  }
+};
 </script>
 
 <template>
-  <van-empty image="search" description="主页丢失" v-if="userList.length < 1" />
-  <div v-for="user in userList.values()" v-bind:key="user.userAccount" v-else>
-    <UserCard :user = user />
-  </div>
+  <van-empty image="search" description="主页丢失" v-if="list.length < 1" />
+  <van-list
+      v-model:loading="loading"
+      :finished="finished"
+      finished-text="没有更多了"
+      @load="onLoad"
+      v-else
+  >
+    <div v-for="user in list.values()" v-bind:key="user.userAccount" >
+      <UserCard :user = user />
+    </div>
+  </van-list>
 </template>
 
 <style scoped>
