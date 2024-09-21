@@ -19,8 +19,8 @@ const toEdit= (editKey: string, currentValue: UnwrapRef<UnwrapRef<Ref<UserType>>
   })
 }
 
-const tempPush = ()=>{
-  router.push('/login')
+const loginPage = ()=>{
+  router.push({name: 'login'})
 }
 
 onMounted(async ()=>{
@@ -51,7 +51,7 @@ const toLogin = ()=> {
     <van-cell title="邮箱" is-link :value="user.email==null?'未填写':user.email" @click="toEdit('email',user.email,'邮箱')"/>
 
     <div style="padding: 12px">
-      <van-button block type="primary" @click="tempPush">to login page temp</van-button>
+      <van-button block type="primary" @click="loginPage">登录界面</van-button>
     </div>
   </div>
 </template>

@@ -18,10 +18,12 @@ const onSubmit = async () => {
   userStore.setUser(res.data.data)
   await router.replace('/main')
 };
+
+const onClickLeft = () => history.back();
 </script>
 
 <template>
-  <van-nav-bar title="登录" />
+  <van-nav-bar left-arrow title="登录" @click-left="onClickLeft"/>
   <van-form @submit="onSubmit">
     <van-cell-group inset>
       <van-field
