@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 import router from "@/router";
+import {getCompletedTagList} from "@/api/tag";
 
 // 选中标签的标记
 const activeIds = ref([]);
@@ -11,40 +12,21 @@ const doClose = (chosenTag: string) => {
     return item !== chosenTag;
   })
 }
-const originalTagList = [
-  {
-    text: '浙江',
-    children: [
-      { text: 'Java', id: 'Java' },
-      { text: 'Python', id: 'Python' },
-    ],
-  },
-  {
-    text: '江苏',
-    children: [
-      { text: '南京', id: '南京' },
-      { text: '无锡', id: '无锡' },
-      { text: '徐州', id: '徐州' },
-    ],
-  },
-  {
-    text: '四川',
-    children: [
-      { text: '成都', id: '成都' },
-      { text: '攀枝花', id: '攀枝花' },
-      { text: '达州', id: '达州' },
-    ],
-  }
-];
+const originalTagList = ref([])
+onMounted(async ()=>{
+  const res = await getCompletedTagList()
+  originalTagList.value = res.data.data
+})
+
 const onCancel = () => {
   searchText.value = '';
-  tagList.value = originalTagList;
+  tagList.value = originalTagList.value;
 }
 
 const searchText = ref('');
 let tagList = ref(originalTagList);
 const onSearch = () => {
-  tagList.value = originalTagList.map(parentTag => {
+  tagList.value = originalTagList.value.map(parentTag => {
     const tempChildren = [...parentTag.children];
     const tempParentTag = {...parentTag};
     tempParentTag.children = tempChildren.filter(item => item.text.includes(searchText.value));
