@@ -31,4 +31,11 @@ export const getCurrentUser = () => request.get(startUrl+'/current')
 /**
  * 主页获取推荐用户列表
  */
-export const getRecommendUserList = () => request.get(startUrl+'/recommend')
+export const getRecommendUserList = (current:number, pageSize:number) =>
+    request.get(startUrl+'/recommend',
+        {
+            params: {
+                page: current,
+                size: pageSize
+            }
+        })
