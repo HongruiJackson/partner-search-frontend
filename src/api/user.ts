@@ -31,6 +31,11 @@ export const userRegister = (userAccount:string, userPassword:string, checkPassw
  */
 export const updateUser = (user: UserType) =>
     request.post(startUrl+'/update',user)
+/**
+ * 用户注销
+ */
+export const logout = ()=>
+    request.post(startUrl+'/logout')
 
 /**
  * 获取用户登录态

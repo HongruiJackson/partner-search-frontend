@@ -3,7 +3,7 @@ import {onMounted, type Ref, ref, type UnwrapRef} from "vue";
 import router from "@/router";
 import {useUserStore} from "@/stores/user";
 import type {UserType} from "@/models/user";
-import {getCurrentUser} from "@/api/user";
+import {getCurrentUser, logout} from "@/api/user";
 
 const userStore = useUserStore()
 const user: Ref<UserType>= ref({})
@@ -19,8 +19,13 @@ const toEdit= (editKey: string, currentValue: UnwrapRef<UnwrapRef<Ref<UserType>>
   })
 }
 
-const loginPage = ()=>{
-  router.push({name: 'login'})
+/**
+ * 退出登录，回到登录界面
+ */
+const loginPage = async () => {
+  userStore.setUser(null) //清除store数据保存的用户信息
+  await logout()
+  await router.push({name: 'login'})
 }
 
 onMounted(async ()=>{
@@ -51,7 +56,7 @@ const toLogin = ()=> {
     <van-cell title="邮箱" is-link :value="user.email==null?'未填写':user.email" @click="toEdit('email',user.email,'邮箱')"/>
 
     <div style="padding: 12px">
-      <van-button block type="primary" @click="loginPage">登录界面</van-button>
+      <van-button block type="primary" @click="loginPage">退出登录</van-button>
     </div>
   </div>
 </template>

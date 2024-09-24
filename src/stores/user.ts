@@ -6,7 +6,7 @@ export const useUserStore = defineStore(
     'user-all',
     ()=> {
         /**
-         * cookie的保存与修改
+         * cookie的保存与修改，未用
          */
         const cookie = ref('')
         const setCookie =(newCookie:string) => {
@@ -19,9 +19,9 @@ export const useUserStore = defineStore(
         /**
          * 用户信息
          */
-        const user : Ref<UserType> = ref({})
+        const user : Ref<UserType|null> = ref({})
 
-        const setUser = (userInfo:UserType) => {
+        const setUser = (userInfo: UserType | null) => {
             user.value = userInfo
         }
 
