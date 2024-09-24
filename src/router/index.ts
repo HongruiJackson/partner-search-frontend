@@ -8,6 +8,7 @@ import SearchResultView from "@/views/SearchResultView.vue";
 import UserLoginView from "@/views/UserLoginView.vue";
 import {useUserStore} from "@/stores/user";
 import MainPageView from "@/views/MainPageView.vue";
+import UserRegisterView from "@/views/UserRegisterView.vue";
 
 
 
@@ -51,6 +52,11 @@ const rootChildren = [
     component: UserLoginView
   },
   {
+    path: '/register',
+    name: 'register',
+    component: UserRegisterView
+  },
+  {
     path: '/main',
     name: 'main',
     component: MainPageView,
@@ -76,7 +82,9 @@ const router = createRouter({
 router.beforeEach((to) => {
   // 如果没有token, 且访问的是非登录页，拦截到登录，其他情况正常放行
   const userStore = useUserStore()
-  if (!userStore.user && to.path !== '/login') return '/login'
+  if (!userStore.user && (to.path !== '/login' && to.path !== '/register')) {
+    return { name: 'login' };
+  }
 })
 
 export default router

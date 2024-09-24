@@ -16,6 +16,15 @@ export const searchUserByTags = (tags: string | null | LocationQueryValue[]) =>
  */
 export const userLogin = (userAccount:string, userPassword:string) =>
     request.post(startUrl+'/login',{userAccount,userPassword})
+
+/**
+ * 用户注册
+ * @param userAccount
+ * @param userPassword
+ * @param checkPassword
+ */
+export const userRegister = (userAccount:string, userPassword:string, checkPassword:string) =>
+    request.post(startUrl+'/register',{userAccount,userPassword,checkPassword})
 /**
  * 更新用户信息
  * @param user

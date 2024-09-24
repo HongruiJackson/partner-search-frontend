@@ -1,29 +1,28 @@
 <script setup lang="ts">
 import {ref} from "vue";
-import {searchUserByTags, userLogin} from "@/api/user";
-import {useUserStore} from "@/stores/user";
+import {userRegister} from "@/api/user";
 import router from "@/router";
 import {showFailToast} from "vant";
 
-
-const userStore = useUserStore()
 /**
- * 登录信息
+ * 注册信息
  */
 const userAccount = ref('');
 const userPassword = ref('');
+const checkPassword = ref('')
 const onSubmit = async () => {
-  const res = await userLogin(userAccount.value, userPassword.value);
-  if (res.data.data === null) showFailToast('登录失败');
-  userStore.setUser(res.data.data)
-  await router.replace('/main')
+  const res = await userRegister(userAccount.value, userPassword.value, checkPassword.value);
+  if (res.data.code === 40000) showFailToast(res.data.description)
+  else {
+    await router.replace({name: 'login'})
+  }
 };
 
 const onClickLeft = () => history.back();
 </script>
 
 <template>
-  <van-nav-bar title="登录" @click-left="onClickLeft"/>
+  <van-nav-bar left-arrow title="注册" @click-left="onClickLeft"/>
   <van-form @submit="onSubmit">
     <van-cell-group inset>
       <van-field
@@ -41,11 +40,19 @@ const onClickLeft = () => history.back();
           placeholder="密码"
           :rules="[{ required: true, message: '请填写密码' }]"
       />
+      <van-field
+          v-model="checkPassword"
+          type="password"
+          name="确认密码"
+          label="确认密码"
+          placeholder="确认密码"
+          :rules="[{ required: true, message: '请填写密码' }]"
+      />
     </van-cell-group>
-    <van-cell is-link value="没有账号？跳转注册！" @click="router.push({name: 'register'})"/>
+
     <div style="margin: 16px;">
       <van-button round block type="primary" native-type="submit">
-        登录
+        注册
       </van-button>
     </div>
   </van-form>
