@@ -1,6 +1,7 @@
 import axios from "axios";
 import baseUrl from "@/utils/baseUrl";
-import {useUserStore} from "@/stores/user"; // 去掉baseUrl.ts.sample的.sample后缀，修改掉里面的baseUrl
+import {useUserStore} from "@/stores/user";
+import {showFailToast} from "vant"; // 去掉baseUrl.ts.sample的.sample后缀，修改掉里面的baseUrl
 
 const instance = axios.create({
     baseURL: baseUrl,
@@ -21,6 +22,10 @@ instance.interceptors.request.use(function (config) {
 instance.interceptors.response.use(function (response) {
     // 2xx 范围内的状态码都会触发该函数。
     // 对响应数据做点什么
+    if (response.data.code === 40100) { // 没有登录
+        showFailToast(response.data.message)
+        return response
+    }
     return response;
 }, function (error) {
     // 超出 2xx 范围的状态码都会触发该函数。
