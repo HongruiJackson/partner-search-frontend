@@ -22,7 +22,7 @@ instance.interceptors.request.use(function (config) {
 instance.interceptors.response.use(function (response) {
     // 2xx 范围内的状态码都会触发该函数。
     // 对响应数据做点什么
-    if (response.data.code === 40100) { // 没有登录
+    if (response.data.code === 40100) { // 没有登录或者没有权限
         showFailToast(response.data.message)
         return response
     }
