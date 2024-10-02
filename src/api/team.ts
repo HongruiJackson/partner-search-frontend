@@ -11,16 +11,8 @@ const startUrl = '/team'
  * @param teamStatus
  * @param teamPassword
  */
-export const addTeam = (
-    name:string,
-    description:string,
-    maxNum:number,
-    expireTime:string,
-    userId:number,
-    teamStatus:number,
-    teamPassword:string
-    )  =>
-    request.post(startUrl+'/add',{name,description,maxNum,expireTime,userId,teamStatus,teamPassword})
+export const addTeam = ({ name, description, maxNum, expireTime, userId, teamStatus, teamPassword }) =>
+    request.post(startUrl + '/add', { name, description, maxNum, expireTime, userId, teamStatus, teamPassword });
 
 /**
  * 解除队伍
