@@ -19,7 +19,7 @@ export const addTeam = ({ name, description, maxNum, expireTime, userId, teamSta
  * @param id 队伍id
  */
 export const deleteTeam = (id:number)  =>
-    request.post(startUrl+'/delete',{id})
+    request.post(startUrl+'/delete',id)
 
 /**
  * 更新队伍
@@ -50,18 +50,45 @@ export const updateTeam = (
  * @param maxNum
  * @param userId
  * @param teamStatus
+ * @param pageSize
+ * @param pageNum
  */
-export const listTeam = (
-    id:number,
-    idList:[],
-    searchText:string,
-    name:string,
-    description:string,
-    maxNum:number,
-    userId:number,
-    teamStatus:number
-)  =>
-    request.post(startUrl+'/list',{id,idList,searchText,name,description,maxNum,userId,teamStatus})
+export const listTeam = ({
+                             id,
+                             idList,
+                             searchText,
+                             name,
+                             description,
+                             maxNum,
+                             userId,
+                             teamStatus,
+                             pageSize,
+                             pageNum
+                         }: {
+    id: number,
+    idList: number[],
+    searchText: string,
+    name: string,
+    description: string,
+    maxNum: number,
+    userId: number,
+    teamStatus: number,
+    pageSize: number,
+    pageNum: number
+}) => {
+    return request.post(startUrl + '/list', {
+        id,
+        idList,
+        searchText,
+        name,
+        description,
+        maxNum,
+        userId,
+        teamStatus,
+        pageSize,
+        pageNum
+    });
+};
 
 /**
  * 加入队伍

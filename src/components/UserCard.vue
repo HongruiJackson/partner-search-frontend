@@ -21,7 +21,7 @@ defineProps({
 <!--      <div>{{user}}</div>--><!--用来看数据的-->
     </template>
   </van-card>
-
+  <div style="height: 10px"/>
 </template>
 
 <style scoped>

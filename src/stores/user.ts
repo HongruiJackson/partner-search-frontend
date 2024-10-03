@@ -25,9 +25,13 @@ export const useUserStore = defineStore(
             user.value = userInfo
         }
 
+        const getUser = ()=> {
+            return user.value
+        }
+
         return {
             cookie,setCookie,removeCookie,
-            user,setUser
+            user,setUser,getUser
         }
     },
     {

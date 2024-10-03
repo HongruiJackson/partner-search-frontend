@@ -6,7 +6,10 @@ import {showFailToast} from "vant"; // 去掉baseUrl.ts.sample的.sample后缀�
 const instance = axios.create({
     baseURL: baseUrl,
     timeout: 10000,
-    withCredentials: true
+    withCredentials: true,
+    headers: {
+        "Content-Type":"application/json"
+    }
 })
 
 // 添加请求拦截器
