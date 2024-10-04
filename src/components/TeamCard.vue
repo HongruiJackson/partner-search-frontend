@@ -4,7 +4,7 @@ import type {TeamType} from "@/models/team";
 import {useUserStore} from "@/stores/user";
 import {ref} from "vue";
 import {deleteTeam, joinTeam, quitTeam} from "@/api/team";
-import {showFailToast, showSuccessToast} from "vant";
+import {showFailToast, showSuccessToast, showToast} from "vant";
 import {useRouter} from "vue-router";
 
 const router = useRouter()
@@ -104,9 +104,13 @@ const doDeleteTeam = async (id:number) =>{
     </template>
 
     <template #footer>
-      <van-button size="small" type="primary" v-if="team.userId !== currentUser?.id && !team.hasJoin" plain
+      <van-button size="small" type="primary" v-if="team.userId !== currentUser?.id && !team.hasJoin && team.teamStatus!=1" plain
                   @click="preJoinTeam(team)">
         加入队伍
+      </van-button>
+      <van-button size="small" type="success" v-if="team.userId !== currentUser?.id && !team.hasJoin && team.teamStatus==1" plain
+                  @click="showToast('私有队伍无法加入')">
+        私有队伍
       </van-button>
       <van-button v-if="team.userId === currentUser?.id" size="small" plain
                   @click="doUpdateTeam(team.id)">更新队伍
