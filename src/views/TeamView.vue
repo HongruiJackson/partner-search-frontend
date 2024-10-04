@@ -47,30 +47,56 @@ const onCancel = async () => {
   searchText.value = ''
   await onLoad(searchText.value)
 };
+
+// 标签页控制
+const active = ref(0);
+
+// 手风琴控制
+const activeName = ref('0');
 </script>
 
 <template>
-  <div id="teamPage">
-    <van-search
-        v-model="searchText" placeholder="请输入队伍关键词"
-        show-action
-        @search="onSearch"
-        @cancel="onCancel"
-    />
-    <van-button type="primary" @click="addTeam">创建队伍</van-button>
-    <van-empty image="search" description="主页丢失" v-if="list.length < 1" />
-    <van-list
-        v-model:loading="loading"
-        :finished="finished"
-        finished-text="没有更多了"
-        @load="onLoad(searchText)"
-        v-else
-    >
-      <div v-for="team in list.values()" v-bind:key="team.id" >
-        <TeamCard :team = team />
+  <van-tabs v-model:active="active">
+<!--    搜索队伍-->
+    <van-tab title="搜索队伍">
+      <div id="searchTeam">
+        <van-search
+            v-model="searchText" placeholder="请输入队伍关键词"
+            show-action
+            @search="onSearch"
+            @cancel="onCancel"
+        />
+        <van-empty image="search" description="主页丢失" v-if="list.length < 1" />
+        <van-list
+            v-model:loading="loading"
+            :finished="finished"
+            finished-text="没有更多了"
+            @load="onLoad(searchText)"
+            v-else
+        >
+          <div v-for="team in list.values()" v-bind:key="team.id" >
+            <TeamCard :team = team />
+          </div>
+        </van-list>
       </div>
-    </van-list>
-  </div>
+    </van-tab>
+<!--我的队伍-->
+    <van-tab title="我的队伍">
+      <van-button type="primary" @click="addTeam">创建队伍</van-button>
+<!--      手风琴组件-->
+      <van-collapse v-model="activeName" accordion>
+        <van-collapse-item title="我创建的队伍" name="1">
+          代码是写出来给人看的，附带能在机器上运行。
+        </van-collapse-item>
+        <van-collapse-item title="我加入的队伍" name="2">
+          技术无非就是那些开发它的人的共同灵魂。
+        </van-collapse-item>
+      </van-collapse>
+
+    </van-tab>
+  </van-tabs>
+
+
 </template>
 
 <style scoped>
