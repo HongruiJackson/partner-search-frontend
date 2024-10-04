@@ -10,6 +10,7 @@ import {useUserStore} from "@/stores/user";
 import MainPageView from "@/views/MainPageView.vue";
 import UserRegisterView from "@/views/UserRegisterView.vue";
 import TeamAddView from "@/views/TeamAddView.vue";
+import TeamUpdateView from "@/views/TeamUpdateView.vue";
 
 
 
@@ -28,6 +29,11 @@ const mainPageChildren = [
     path: '/team/add',
     name: 'teamAdd',
     component:TeamAddView
+  },
+  {
+    path: '/team/update',
+    name: 'teamUpdate',
+    component:TeamUpdateView
   },
   {
     path: '/user',

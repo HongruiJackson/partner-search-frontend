@@ -5,6 +5,9 @@ import {useUserStore} from "@/stores/user";
 import {ref} from "vue";
 import {deleteTeam, joinTeam, quitTeam} from "@/api/team";
 import {showFailToast, showSuccessToast} from "vant";
+import {useRouter} from "vue-router";
+
+const router = useRouter()
 
 // pinia存储的用户状态
 const userStore = useUserStore()
@@ -53,7 +56,12 @@ const doJoinTeam = async () => {
 
 // 更新队伍
 const doUpdateTeam = (id:number)=>{
-
+  router.push({
+    name: 'teamUpdate',
+    query: {
+      id: id
+    }
+  })
 }
 
 // 退出队伍

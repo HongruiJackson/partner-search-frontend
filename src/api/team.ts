@@ -30,15 +30,8 @@ export const deleteTeam = (id:number)  =>
  * @param teamStatus
  * @param teamPassword
  */
-export const updateTeam = (
-    id:number,
-    name:string,
-    description:string,
-    expireTime:string,
-    teamStatus:number,
-    teamPassword:string
-)  =>
-    request.post(startUrl+'/update',{id,name,description,expireTime,teamStatus,teamPassword})
+export const updateTeam = ({ id,name, description, expireTime, teamStatus, teamPassword }) =>
+    request.post(startUrl + '/update', { id,name, description, expireTime, teamStatus, teamPassword });
 
 /**
  * 查询队伍
@@ -107,3 +100,15 @@ export const joinTeam = (
  */
 export const quitTeam = (id:number)  =>
     request.post(startUrl+'/quit',{id})
+
+/**
+ * 获取队伍信息
+ * @param id
+ */
+export const getTeam = (id:number) =>
+    request.get(startUrl+'/get',
+        {
+            params: {
+                id: id
+            }
+        })
