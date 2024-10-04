@@ -3,7 +3,7 @@ import {useRouter} from "vue-router";
 import {onMounted, ref, type Ref} from "vue";
 import {getRecommendUserList} from "@/api/user";
 import TeamCard from "@/components/TeamCard.vue";
-import {listTeam} from "@/api/team";
+import {getCreatedTeam, getJoinedTeam, listTeam} from "@/api/team";
 import {showToast} from "vant";
 
 const router = useRouter()
@@ -20,6 +20,8 @@ const finished = ref(false);
 const pageSize = 20; //单页最大
 onMounted(async () => {
   await onLoad(searchText.value)
+  await getMyCreatedlist()
+  await getMyJoinedlist()
 })
 const onLoad = async (searchTextVal) => {
   const res = await listTeam({pageNum:list.value.length/20+1,pageSize:pageSize,searchText:searchTextVal});
@@ -53,6 +55,18 @@ const active = ref(0);
 
 // 手风琴控制
 const activeName = ref('0');
+
+//我创建的队伍
+const myCreatedlist = ref([]);
+const getMyCreatedlist = async () => {
+  const res = await getCreatedTeam()
+  myCreatedlist.value = res.data.data
+}
+const myJoinedlist = ref([]);
+const getMyJoinedlist = async () => {
+  const res = await getJoinedTeam()
+  myJoinedlist.value = res.data.data
+}
 </script>
 
 <template>
@@ -86,10 +100,14 @@ const activeName = ref('0');
 <!--      手风琴组件-->
       <van-collapse v-model="activeName" accordion>
         <van-collapse-item title="我创建的队伍" name="1">
-          代码是写出来给人看的，附带能在机器上运行。
+          <div v-for="team in myCreatedlist.values()" v-bind:key="team.id" >
+            <TeamCard :team = team />
+          </div>
         </van-collapse-item>
         <van-collapse-item title="我加入的队伍" name="2">
-          技术无非就是那些开发它的人的共同灵魂。
+          <div v-for="team in myJoinedlist.values()" v-bind:key="team.id" >
+            <TeamCard :team = team />
+          </div>
         </van-collapse-item>
       </van-collapse>
 

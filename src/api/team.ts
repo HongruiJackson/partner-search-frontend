@@ -112,3 +112,14 @@ export const getTeam = (id:number) =>
                 id: id
             }
         })
+/**
+ * 获取加入但并非创建的队伍信息
+ */
+export const getJoinedTeam = ()=>
+    request.get(startUrl+'/list/my/join')
+
+/**
+ * 获取创建但并非创加入的队伍信息
+ */
+export const getCreatedTeam = ()=>
+    request.get(startUrl+'/list/my/create')
