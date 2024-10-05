@@ -20,8 +20,8 @@ const finished = ref(false);
 const pageSize = 20; //单页最大
 onMounted(async () => {
   await onLoad(searchText.value)
-  await getMyCreatedlist()
-  await getMyJoinedlist()
+  await getMyCreatedList()
+  await getMyJoinedList()
 })
 const onLoad = async (searchTextVal) => {
   const res = await listTeam({pageNum:list.value.length/20+1,pageSize:pageSize,searchText:searchTextVal});
@@ -57,20 +57,32 @@ const active = ref(0);
 const activeName = ref('0');
 
 //我创建的队伍
-const myCreatedlist = ref([]);
-const getMyCreatedlist = async () => {
+const myCreatedList = ref([]);
+const getMyCreatedList = async () => {
   const res = await getCreatedTeam()
-  myCreatedlist.value = res.data.data
+  myCreatedList.value = res.data.data
 }
-const myJoinedlist = ref([]);
-const getMyJoinedlist = async () => {
+const myJoinedList = ref([]);
+const getMyJoinedList = async () => {
   const res = await getJoinedTeam()
-  myJoinedlist.value = res.data.data
+  myJoinedList.value = res.data.data
+}
+
+// 标签页刷新逻辑
+const refreshContent = async () =>{
+  if (active.value == 1) {
+    await getMyCreatedList()
+    await getMyJoinedList()
+  } else {
+    list.value = []
+    searchText.value = ''
+    await onLoad(searchText.value)
+  }
 }
 </script>
 
 <template>
-  <van-tabs v-model:active="active">
+  <van-tabs v-model:active="active" @change="refreshContent">
 <!--    搜索队伍-->
     <van-tab title="搜索队伍">
       <div id="searchTeam">
@@ -100,12 +112,12 @@ const getMyJoinedlist = async () => {
 <!--      手风琴组件-->
       <van-collapse v-model="activeName" accordion>
         <van-collapse-item title="我创建的队伍" name="1">
-          <div v-for="team in myCreatedlist.values()" v-bind:key="team.id" >
+          <div v-for="team in myCreatedList.values()" v-bind:key="team.id" >
             <TeamCard :team = team />
           </div>
         </van-collapse-item>
         <van-collapse-item title="我加入的队伍" name="2">
-          <div v-for="team in myJoinedlist.values()" v-bind:key="team.id" >
+          <div v-for="team in myJoinedList.values()" v-bind:key="team.id" >
             <TeamCard :team = team />
           </div>
         </van-collapse-item>
