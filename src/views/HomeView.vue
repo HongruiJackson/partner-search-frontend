@@ -31,7 +31,6 @@ const test=() =>router.push('/search');
 
 
 <template>
-  <van-button @click="test">test</van-button>
   <van-empty image="search" description="主页丢失" v-if="list.length < 1" />
   <van-list
       v-model:loading="loading"
