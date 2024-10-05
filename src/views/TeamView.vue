@@ -92,6 +92,7 @@ const refreshContent = async () =>{
             @search="onSearch"
             @cancel="onCancel"
         />
+        <van-cell is-link value="没有心仪的队伍？不如自己来！" @click="addTeam"/>
         <van-empty image="search" description="主页丢失" v-if="list.length < 1" />
         <van-list
             v-model:loading="loading"
@@ -108,7 +109,6 @@ const refreshContent = async () =>{
     </van-tab>
 <!--我的队伍-->
     <van-tab title="我的队伍">
-      <van-button type="primary" @click="addTeam">创建队伍</van-button>
 <!--      手风琴组件-->
       <van-collapse v-model="activeName" accordion>
         <van-collapse-item title="我创建的队伍" name="1">
