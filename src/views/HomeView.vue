@@ -2,6 +2,7 @@
 import {onMounted, type Ref, ref} from "vue";
 import UserCard from "@/components/UserCard.vue";
 import {getRecommendUserList} from "@/api/user";
+import router from "@/router";
 
 let userList: Ref = ref([]);
 const list = ref([]);
@@ -24,9 +25,13 @@ const onLoad = async () => {
     finished.value = true;
   }
 };
+
+const test=() =>router.push('/search');
 </script>
 
+
 <template>
+  <van-button @click="test">test</van-button>
   <van-empty image="search" description="主页丢失" v-if="list.length < 1" />
   <van-list
       v-model:loading="loading"

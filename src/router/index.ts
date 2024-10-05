@@ -11,6 +11,7 @@ import MainPageView from "@/views/MainPageView.vue";
 import UserRegisterView from "@/views/UserRegisterView.vue";
 import TeamAddView from "@/views/TeamAddView.vue";
 import TeamUpdateView from "@/views/TeamUpdateView.vue";
+import TagManageView from "@/views/TagManageView.vue";
 
 
 
@@ -54,6 +55,11 @@ const mainPageChildren = [
     path: '/user/list',
     name: 'searchResult',
     component: SearchResultView
+  },
+  {
+    path: '/user/edit/tag',
+    name: 'editTag',
+    component: TagManageView
   },
 ]
 
