@@ -22,6 +22,7 @@ onMounted(async ()=>{
 const onCancel = () => {
   searchText.value = '';
   tagList.value= originalTagList.value;
+  activeIds.value = []
 }
 
 const searchText = ref('');
@@ -35,6 +36,15 @@ const onSearch = () => {
   });
 
 }
+
+const refresh = () =>  {
+  if (searchText.value == '') {
+    tagList.value= originalTagList.value;
+  } else {
+    onSearch()
+  }
+}
+
 
 /**
  * 执行搜索
@@ -57,6 +67,7 @@ const doSearchResult = () => {
         placeholder="请输入要查询的标签"
         @search="onSearch"
         @cancel="onCancel"
+        @update:model-value="refresh"
     />
   </form>
   <van-divider content-position="left">已选标签</van-divider>
