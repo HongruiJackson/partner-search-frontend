@@ -13,7 +13,7 @@ const editUser = ref({
 })
 const onSubmit = async () => {
   const res = await updateUser({[editUser.value.editKey as string]: editUser.value.currentValue})
-  console.log('submit', editUser.value);
+  // console.log('submit', editUser.value);
   router.back()
 };
 
