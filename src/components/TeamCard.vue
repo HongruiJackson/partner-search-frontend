@@ -21,6 +21,11 @@ defineProps({
   },
 })
 
+
+// 派发事件
+
+const emit = defineEmits(['refreshData'])
+
 /**
  * 加入队伍
  */
@@ -49,6 +54,7 @@ const doJoinTeam = async () => {
   if (res.data.code == 0) {
     showSuccessToast('加入成功')
     doJoinCancel()
+    emit('refreshData')
   }
   else showFailToast('加入失败')
 
@@ -69,6 +75,7 @@ const doQuitTeam = async (id:number)=>{
   const res = await quitTeam(id)
   if (res.data.code == 0) {
     showSuccessToast('退出成功')
+    emit('refreshData')
   }
   else showFailToast('退出失败')
 }
@@ -78,6 +85,7 @@ const doDeleteTeam = async (id:number) =>{
   const res = await deleteTeam(id)
   if (res.data.code == 0) {
     showSuccessToast('删除成功')
+    emit('refreshData')
   }
   else showFailToast('删除失败')
 }

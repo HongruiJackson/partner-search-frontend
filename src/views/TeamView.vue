@@ -102,7 +102,7 @@ const refreshContent = async () =>{
             v-else
         >
           <div v-for="team in list.values()" v-bind:key="team.id" >
-            <TeamCard :team = team />
+            <TeamCard :team = team @refresh-data="refreshContent"/>
           </div>
         </van-list>
       </div>
@@ -113,12 +113,12 @@ const refreshContent = async () =>{
       <van-collapse v-model="activeName" accordion>
         <van-collapse-item title="我创建的队伍" name="1">
           <div v-for="team in myCreatedList.values()" v-bind:key="team.id" >
-            <TeamCard :team = team />
+            <TeamCard :team = team @refresh-data="refreshContent"/>
           </div>
         </van-collapse-item>
         <van-collapse-item title="我加入的队伍" name="2">
           <div v-for="team in myJoinedList.values()" v-bind:key="team.id" >
-            <TeamCard :team = team />
+            <TeamCard :team = team @refresh-data="refreshContent"/>
           </div>
         </van-collapse-item>
       </van-collapse>
