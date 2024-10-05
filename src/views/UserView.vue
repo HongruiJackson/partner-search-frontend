@@ -54,6 +54,11 @@ const toLogin = ()=> {
     <van-cell title="性别" is-link :value="user.gender?'女':'男'" @click="toEdit('gender',user.gender,'性别')"/>
     <van-cell title="电话" is-link :value="user.phone==null?'未填写':user.phone" @click="toEdit('phone',user.phone,'电话')"/>
     <van-cell title="邮箱" is-link :value="user.email==null?'未填写':user.email" @click="toEdit('email',user.email,'邮箱')"/>
+    <van-cell title="标签" is-link value="标签管理" @click="router.push({name: 'register'})"/>
+    <van-space :size="20" wrap style="padding-left: 20px;padding-top: 10px;padding-right:20px">
+      <van-tag type="primary" size="large" v-for="tag in user.tags" :key="tag">{{tag}}</van-tag>
+    </van-space>
+
 
     <div style="padding: 12px">
       <van-button block type="primary" @click="loginPage">退出登录</van-button>
