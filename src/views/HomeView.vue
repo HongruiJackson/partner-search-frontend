@@ -43,6 +43,7 @@ const test=() =>router.push('/search');
       <UserCard :user = user />
     </div>
   </van-list>
+  <van-back-top bottom="20vh"/>
 </template>
 
 <style scoped>

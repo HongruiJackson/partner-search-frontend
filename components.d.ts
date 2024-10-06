@@ -18,6 +18,7 @@ declare module 'vue' {
     TeamCard: typeof import('./src/components/TeamCard.vue')['default']
     TheWelcome: typeof import('./src/components/TheWelcome.vue')['default']
     UserCard: typeof import('./src/components/UserCard.vue')['default']
+    VanBackTop: typeof import('vant/es')['BackTop']
     VanBarrage: typeof import('vant/es')['Barrage']
     VanButton: typeof import('vant/es')['Button']
     VanCard: typeof import('vant/es')['Card']

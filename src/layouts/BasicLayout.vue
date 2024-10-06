@@ -2,12 +2,17 @@
 import {showToast} from "vant";
 import {onMounted, ref} from "vue";
 import router from "@/router";
+import {routes} from "vue-router/auto-routes";
 const onClickLeft = () => history.back();
 const onClickRight = () => router.push('/search');
 
 // 更改导航栏的标题
 const pageTitle = ref('Home')
+
+const DEFAULT_TITLE = '伙伴匹配';
+const title = ref(DEFAULT_TITLE)
 const onChange = (index: string) => {pageTitle.value = index}; //vant组件包含的事件
+
 </script>
 
 <template>
