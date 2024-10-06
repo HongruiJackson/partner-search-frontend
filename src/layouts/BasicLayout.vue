@@ -17,7 +17,7 @@ const onChange = (index: string) => {pageTitle.value = index}; //vant组件包�
       @click-left="onClickLeft"
       @click-right="onClickRight"
   >
-    <template #right>
+    <template #right v-if="pageTitle === 'Home'">
       <slot name="right-option"></slot>
     </template>
   </van-nav-bar>
