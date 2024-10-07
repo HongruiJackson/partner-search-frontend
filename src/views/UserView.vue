@@ -4,6 +4,7 @@ import router from "@/router";
 import {useUserStore} from "@/stores/user";
 import type {UserType} from "@/models/user";
 import {getCurrentUser, logout} from "@/api/user";
+import tempAvatar from "@/assets/logo.svg"
 
 const userStore = useUserStore()
 const user: Ref<UserType>= ref({})
@@ -58,7 +59,7 @@ const manageTag = () => {
     <van-cell title="简介" is-link :value="user.profile==null?'未填写':user.profile" @click="toEdit('profile',user.profile,'简介')"/>
     <!--  <van-cell title="头像" is-link @click="toEdit('avatarUrl',user.avatarUrl,'头像')">-->
     <van-cell title="头像">
-      <img width="46px" :src="user.avatarUrl==null?'src/assets/logo.svg':user.avatarUrl" alt="加载失败">
+      <img width="46px" :src="user.avatarUrl==null?tempAvatar:user.avatarUrl" alt="加载失败">
     </van-cell>
     <van-cell title="性别" is-link :value="user.gender?'女':'男'" @click="toEdit('gender',user.gender,'性别')"/>
     <van-cell title="电话" is-link :value="user.phone==null?'未填写':user.phone" @click="toEdit('phone',user.phone,'电话')"/>

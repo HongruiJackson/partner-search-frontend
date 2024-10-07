@@ -7,7 +7,6 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     IconCommunity: typeof import('./src/components/icons/IconCommunity.vue')['default']
     IconDocumentation: typeof import('./src/components/icons/IconDocumentation.vue')['default']
     IconEcosystem: typeof import('./src/components/icons/IconEcosystem.vue')['default']
@@ -16,10 +15,8 @@ declare module 'vue' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     TeamCard: typeof import('./src/components/TeamCard.vue')['default']
-    TheWelcome: typeof import('./src/components/TheWelcome.vue')['default']
     UserCard: typeof import('./src/components/UserCard.vue')['default']
     VanBackTop: typeof import('vant/es')['BackTop']
-    VanBarrage: typeof import('vant/es')['Barrage']
     VanButton: typeof import('vant/es')['Button']
     VanCard: typeof import('vant/es')['Card']
     VanCell: typeof import('vant/es')['Cell']
@@ -38,7 +35,6 @@ declare module 'vue' {
     VanNavBar: typeof import('vant/es')['NavBar']
     VanPickerGroup: typeof import('vant/es')['PickerGroup']
     VanPopup: typeof import('vant/es')['Popup']
-    VanPullRefresh: typeof import('vant/es')['PullRefresh']
     VanRadio: typeof import('vant/es')['Radio']
     VanRadioGroup: typeof import('vant/es')['RadioGroup']
     VanRow: typeof import('vant/es')['Row']
@@ -52,6 +48,5 @@ declare module 'vue' {
     VanTag: typeof import('vant/es')['Tag']
     VanTimePicker: typeof import('vant/es')['TimePicker']
     VanTreeSelect: typeof import('vant/es')['TreeSelect']
-    WelcomeItem: typeof import('./src/components/WelcomeItem.vue')['default']
   }
 }
