@@ -1,10 +1,8 @@
 import axios from "axios";
-import baseUrl from "@/utils/baseUrl";
-import {useUserStore} from "@/stores/user";
-import {showFailToast} from "vant"; // 去掉baseUrl.ts.sample的.sample后缀，修改掉里面的baseUrl
+import {showFailToast} from "vant";
 
 const instance = axios.create({
-    baseURL: baseUrl,
+    baseURL: import.meta.env.VITE_BASE_API_URL,
     timeout: 10000,
     withCredentials: true,
     headers: {
