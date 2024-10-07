@@ -9,7 +9,7 @@ import {showFailToast, showSuccessToast} from "vant";
 // 选中标签的标记
 const route = useRoute()
 const activeIds = ref([]);
-activeIds.value = route.query.currentActiveIds
+
 
 const activeIndex = ref(0);
 // 移除标签
@@ -23,6 +23,11 @@ onMounted(async ()=>{
   const res = await getCompletedTagList()
   originalTagList.value = res.data.data
   tagList.value = JSON.parse(JSON.stringify(originalTagList.value));
+
+  if (route.query.currentActiveIds != null) {
+    activeIds.value = route.query.currentActiveIds
+  }
+
 })
 
 const onCancel = () => {
@@ -67,6 +72,7 @@ const doSearchResult = async () => {
 </script>
 
 <template>
+  <van-empty image="search" description="页面丢失" v-if="originalTagList.length < 1" />
   <form action="/">
     <van-search
         v-model="searchText"
