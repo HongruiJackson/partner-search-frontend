@@ -60,6 +60,7 @@ const doSearchResult = () => {
 </script>
 
 <template>
+  <van-empty image="search" description="页面丢失" v-if="originalTagList.length < 1" />
   <form action="/">
     <van-search
         v-model="searchText"
