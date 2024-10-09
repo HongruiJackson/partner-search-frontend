@@ -30,3 +30,4 @@ coverage
 *.tsbuildinfo
 
 baseUrl.ts
+/.env.prod
