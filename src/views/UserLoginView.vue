@@ -5,7 +5,7 @@ import {useUserStore} from "@/stores/user";
 import router from "@/router";
 import {showFailToast} from "vant";
 
-
+const BEIANHAO = import.meta.env.VITE_BEIANHAO
 const userStore = useUserStore()
 /**
  * 登录信息
@@ -49,9 +49,21 @@ const onClickLeft = () => history.back();
       </van-button>
     </div>
   </van-form>
-
+  <footer>
+    <a href="http://beian.miit.gov.cn/">{{ BEIANHAO }}</a>
+  </footer>
 </template>
 
 <style scoped>
+footer a {
+  position: fixed;
+  bottom: 0;
+  font-size: 12px; /* 根据需要调整字体大小 */
+  height: 20px;
+  color: #999; /* 文字颜色 */
+  width: 100%;
+  text-align: center; /* 水平居中文本 */
+  background: #fff;
+}
 
 </style>
