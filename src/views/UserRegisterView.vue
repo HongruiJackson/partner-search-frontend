@@ -4,7 +4,9 @@ import {userRegister} from "@/api/user";
 import router from "@/router";
 import {showFailToast} from "vant";
 
-const BEIANHAO = import.meta.env.VITE_BEIANHAO
+const ICP_BEI_AN_HAO = import.meta.env.VITE_ICP_BEI_AN_HAO
+const GONG_AN_BEI_AN_HAO = import.meta.env.VITE_GONG_AN_BEI_AN_HAO
+const GONG_AN_BEI_AN_WEB = import.meta.env.VITE_GONG_AN_BEI_AN_WEB
 /**
  * 注册信息
  */
@@ -58,16 +60,31 @@ const onClickLeft = () => history.back();
     </div>
   </van-form>
   <footer>
-    <a href="http://beian.miit.gov.cn/">{{ BEIANHAO }}</a>
+    <a :href="GONG_AN_BEI_AN_WEB" rel="noreferrer" target="_blank">
+      <img src="/GongAnPic.png" alt="GongAnBeiAn" height="15">
+      {{GONG_AN_BEI_AN_HAO}}
+    </a>
+    &nbsp;
+    <a href="http://beian.miit.gov.cn/">{{ICP_BEI_AN_HAO}}</a>
   </footer>
 </template>
 
 <style scoped>
-footer a {
+footer {
   position: fixed;
-  bottom: 0;
-  font-size: 12px; /* 根据需要调整字体大小 */
-  height: 20px;
+  bottom:0;
+  left:0;
+  right:0;
+  margin-left:auto;
+  margin-right:auto;
+  text-align: center;
+  width: 100%;
+  background: #fff;
+}
+
+footer a {
+  font-size: 15px; /* 根据需要调整字体大小 */
+  height: 15px;
   color: #999; /* 文字颜色 */
   width: 100%;
   text-align: center; /* 水平居中文本 */
