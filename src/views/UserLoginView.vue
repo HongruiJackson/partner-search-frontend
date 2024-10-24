@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 import {searchUserByTags, userLogin} from "@/api/user";
 import {useUserStore} from "@/stores/user";
 import router from "@/router";
@@ -12,8 +12,8 @@ const userStore = useUserStore()
 /**
  * 登录信息
  */
-const userAccount = ref('defaultAccount');
-const userPassword = ref('123456789');
+const userAccount = ref('');
+const userPassword = ref('');
 const onSubmit = async () => {
   const res = await userLogin(userAccount.value, userPassword.value);
   if (res.data.data === null) showFailToast('登录失败');
@@ -21,6 +21,16 @@ const onSubmit = async () => {
   await router.replace('/main')
 };
 
+const defaultSubmit = async () => {
+  const res = await userLogin('defaultAccount', '123456789');
+  if (res.data.data === null) showFailToast('登录失败');
+  userStore.setUser(res.data.data)
+  await router.replace('/main')
+};
+
+onMounted(()=> {
+
+})
 const onClickLeft = () => history.back();
 </script>
 
@@ -52,6 +62,11 @@ const onClickLeft = () => history.back();
     </div>
   </van-form>
 
+  <div style="margin: 16px;">
+    <van-button round block type="primary" native-type="submit" @click="defaultSubmit">
+      默认账号一键登录
+    </van-button>
+  </div>
   <footer>
     <a :href="GONG_AN_BEI_AN_WEB" rel="noreferrer" target="_blank">
       <img src="/GongAnPic.png" alt="GongAnBeiAn" height="12">
