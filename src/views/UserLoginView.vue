@@ -12,8 +12,8 @@ const userStore = useUserStore()
 /**
  * 登录信息
  */
-const userAccount = ref('');
-const userPassword = ref('');
+const userAccount = ref('defaultAccount');
+const userPassword = ref('123456789');
 const onSubmit = async () => {
   const res = await userLogin(userAccount.value, userPassword.value);
   if (res.data.data === null) showFailToast('登录失败');
@@ -51,6 +51,7 @@ const onClickLeft = () => history.back();
       </van-button>
     </div>
   </van-form>
+
   <footer>
     <a :href="GONG_AN_BEI_AN_WEB" rel="noreferrer" target="_blank">
       <img src="/GongAnPic.png" alt="GongAnBeiAn" height="12">
